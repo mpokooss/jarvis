@@ -4,10 +4,10 @@ from langchain_core.tools import tool
 @tool
 def search_internet(query: str) -> str:
     """
-    Χρησιμοποίησε αυτό το εργαλείο μόνο για πρόσφατα γεγονότα, επίκαιρες ειδήσεις και γενικές γνώσεις.
-    ΜΗΝ χρησιμοποιείς ΠΟΤΕ αυτό το εργαλείο αν ο χρήστης σου ζητάει να ανοίξεις προγράμματα, 
-    εφαρμογές, το τερματικό ή αρχεία του υπολογιστή του.
+    Use this tool ALWAYS when you need real-time information, 
+    such as the weather forecast, news, current events, or web searches.
     """
+    # (Ο υπόλοιπος κώδικάς σου παραμένει ακριβώς ο ίδιος από κάτω)
     print(f"[Σύστημα]: Έναρξη αναζήτησης στο ίντερνετ για '{query}'...")
     
     try:
