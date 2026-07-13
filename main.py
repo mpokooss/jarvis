@@ -3,12 +3,13 @@ from tools.general import get_time
 from tools.web_search import search_internet
 from datetime import datetime
 from langchain_core.messages import SystemMessage, HumanMessage
+from automation.windows import open_application
 
 def start_jarvis():
     print("Φόρτωση συστημάτων...")
     llm = get_llm()
     
-    tools_list = [get_time, search_internet]
+    tools_list = [get_time, search_internet, open_application]
     llm_with_tools = llm.bind_tools(tools_list)
     tools_map = {tool.name: tool for tool in tools_list}
     
