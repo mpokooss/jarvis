@@ -1,20 +1,20 @@
 from brain.llm import get_llm
-# ΝΕΟ: Εισαγωγή της μνήμης
 from brain.memory import load_profile, update_memory
 from tools.general import get_time
 from tools.web_search import search_internet
-from automation.windows import open_application
 from datetime import datetime
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from voice.tts import speak
 from tools.weather import get_weather
+from automation.system_commands import launch_application
+from automation.system_commands import launch_application, control_volume, system_power, open_settings, mute_system, control_media, press_shortcut, play_spotify, play_youtube
 
 def start_jarvis():
     print("Φόρτωση συστημάτων...")
     llm = get_llm()
     
     # ΝΕΟ: Προσθήκη του update_memory στα εργαλεία
-    tools_list = [get_time, search_internet, open_application, update_memory, get_weather]
+    tools_list = [get_time, search_internet, launch_application, update_memory, get_weather, control_volume, system_power, open_settings, launch_application, mute_system, control_media, press_shortcut, play_spotify, play_youtube]
     llm_with_tools = llm.bind_tools(tools_list)
     tools_map = {tool.name: tool for tool in tools_list}
     
@@ -25,15 +25,7 @@ def start_jarvis():
     print("-" * 60)
 
     today = datetime.now().strftime("%Y-%m-%d")
-    
-    # ΝΕΟ: Δίνουμε στο LLM τα δεδομένα σου από το JSON
-    # ΝΕΟ: J.A.R.V.I.S. Persona Prompt
-    # ΝΕΟ: J.A.R.V.I.S. Persona Prompt με αυστηρούς κανόνες για τα εργαλεία
-    # ΝΕΟ: J.A.R.V.I.S. Persona (Καθαρότερο prompt, αφήνουμε τη LangChain να διαχειριστεί τα εργαλεία)
-    # ΝΕΟ: J.A.R.V.I.S. Persona (Χωρίς καμία αναφορά σε εργαλεία, αφήνουμε τη Groq να τα βρει)
-    # ΝΕΟ: J.A.R.V.I.S. Persona με απόλυτη απαγόρευση φλυαρίας κατά τη χρήση εργαλείων
-    # ΝΕΟ: J.A.R.V.I.S. Persona
-    # ΝΕΟ: J.A.R.V.I.S. Persona (English Only)
+   
     system_prompt = (
         f"You are J.A.R.V.I.S., a highly advanced AI assistant. Today is {today}.\n"
         f"You must communicate with the user STRICTLY in English.\n"
